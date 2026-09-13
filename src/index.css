@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 213 27% 7%;
+    --foreground: 213 20% 92%;
+
+    --card: 215 21% 11%;
+    --card-foreground: 213 20% 92%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 213 40% 7%;
+
+    --secondary: 215 19% 14%;
+    --secondary-foreground: 213 20% 92%;
+
+    --muted: 215 19% 14%;
+    --muted-foreground: 215 12% 62%;
+
+    --accent: 160 84% 39%;
+    --accent-foreground: 213 40% 7%;
+
+    --border: 213 12% 22%;
+    --input: 213 12% 22%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the sticky nav never covers a heading. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    @apply bg-ink-900 text-foreground font-sans antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  }
+
+  ::selection {
+    @apply bg-blueprint/30 text-white;
+  }
+}
+
+@layer components {
+  /* Faint blueprint grid used behind hero + section backdrops. */
+  .blueprint-grid {
+    background-image: theme("backgroundImage.grid");
+    background-size: 44px 44px;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-br from-white via-white to-blueprint-soft bg-clip-text text-transparent;
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-ink-600/70 bg-ink-800/70 backdrop-blur-sm transition-all duration-300;
+  }
+
+  .card-surface-hover {
+    @apply hover:border-blueprint/50 hover:shadow-glow;
+  }
+
+  .mono-badge {
+    @apply font-mono text-[11px] uppercase tracking-[0.14em];
+  }
+}
+
+@layer utilities {
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
