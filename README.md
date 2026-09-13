@@ -40,6 +40,51 @@ npx netlify-cli deploy --build          # draft URL
 npx netlify-cli deploy --build --prod   # production
 ```
 
+## Analytics (PostHog)
+
+PostHog is wired up in `src/lib/analytics.ts` and started from `src/main.tsx`.
+Out of the box it captures `$pageview`, `$autocapture` (every CTA click, with the
+button text), heatmaps, and web vitals — no per-element instrumentation needed.
+
+**Configuration** is optional; the app ships with a working project key. Override via
+env vars (see `.env.example`) to point a fork or staging deploy elsewhere:
+
+| Variable | Default | Purpose |
+| --- | --- | --- |
+| `VITE_POSTHOG_KEY` | built-in project key | PostHog project API key |
+| `VITE_POSTHOG_HOST` | `https://us.i.posthog.com` | Ingestion host (`eu.` for EU cloud) |
+| `VITE_POSTHOG_DEV` | unset | Set to `true` to capture from `npm run dev` |
+
+Notes on the implementation:
+
+- **The key is safe to commit.** A PostHog project API key is a public, write-only
+  client key that is designed to ship in browser bundles.
+- **Dev traffic is excluded by default** so local browsing does not skew conversion
+  metrics. Opt in with `VITE_POSTHOG_DEV=true`.
+- **The library is loaded lazily**, on `requestIdleCallback`, rather than bundled into
+  the main chunk. posthog-js is ~98kB gzipped — more than the entire rest of the app —
+  and blocking first paint with it on a conversion page is a bad trade. It lands in its
+  own async chunk and the pageview fires a few hundred ms later.
+- **`window.posthog` is exposed** after init. The inline snippet does this natively but
+  the module build does not; it is what the PostHog toolbar and console debugging need.
+
+For custom events beyond autocapture:
+
+```ts
+import { getPostHog } from "@/lib/analytics"
+
+void getPostHog()?.then((ph) => ph.capture("cloud_waitlist_joined", { plan: "pro" }))
+```
+
+### Verifying it works
+
+PostHog **silently drops events from headless browsers** via bot detection, so a
+Playwright or Puppeteer check will show init succeeding (config and flag requests go
+out) while no events are ever sent. That is working as intended, not a broken
+integration. To verify in automation, spoof a real user agent and mask
+`navigator.webdriver`; in a normal browser just use the PostHog toolbar or the
+Live Events view.
+
 ## Structure
 
 ```
@@ -47,6 +92,7 @@ src/
   App.tsx                     # section composition + skip link
   index.css                   # design tokens, glass/grid utilities, reduced-motion
   data/content.ts             # all marketing copy, pricing tiers, FAQ, footer links
+  lib/analytics.ts            # lazy-loaded PostHog init + getPostHog() helper
   components/ui/              # shadcn-style primitives (button, badge,
                               #   accordion, switch, tabs)
   components/landing/
