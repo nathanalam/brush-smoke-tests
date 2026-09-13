@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 228 27% 4%;
+    --foreground: 0 0% 100%;
+    --card: 228 24% 7%;
+    --card-foreground: 0 0% 100%;
+    --primary: 189 94% 43%;
+    --primary-foreground: 228 27% 4%;
+    --secondary: 258 90% 66%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 228 18% 12%;
+    --muted-foreground: 220 12% 65%;
+    --accent: 258 90% 66%;
+    --accent-foreground: 0 0% 100%;
+    --border: 228 16% 16%;
+    --input: 228 16% 16%;
+    --ring: 189 94% 43%;
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the sticky nav never covers a heading. */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  ::selection {
+    @apply bg-laser-cyan/30 text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-laser-cyan ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer components {
+  /* Glassmorphic surface used by badges, cards and the nav. */
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-md;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-laser-cyan via-white to-laser-violet bg-clip-text text-transparent;
+  }
+
+  /* Faint point-cloud grid used behind hero + spotlight sections. */
+  .grid-backdrop {
+    background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
