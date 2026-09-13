@@ -1,4 +1,4 @@
-import { Apple, ArrowRight, Smartphone } from "lucide-react"
+import { ArrowRight, Building2, Play } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -17,41 +17,41 @@ export function DownloadCTA() {
       <div className="container relative">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center backdrop-blur-md sm:p-12">
           <Badge variant="cyan">
-            <Smartphone className="size-3" />
-            Free forever on iOS & Android
+            <Building2 className="size-3" />
+            Early access for architects
           </Badge>
 
           <h2 className="mt-6 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Start scanning in the next five minutes
+            Design your next building at the speed you think
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-base text-muted-foreground">
-            Download the app and capture your first cloud for free. Add Brush Cloud whenever you
-            want hosted streaming, labeling, and prompt-driven editing.
+            Join early access. Describe a space, upload a plan, and iterate the model while the
+            client is still in the room.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button size="lg" className="w-full sm:w-auto" asChild>
               <a href="#">
-                <Apple className="size-4" />
-                Download for iOS
+                Request early access
+                <ArrowRight className="size-4" />
               </a>
             </Button>
             <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-              <a href="#">
-                <Smartphone className="size-4" />
-                Download for Android
+              <a href="#product">
+                <Play className="size-4" />
+                See a live revision
               </a>
             </Button>
           </div>
 
           <div className="mt-8 border-t border-white/10 pt-6">
             <p className="text-sm text-muted-foreground">
-              Want the cloud workspace?{" "}
+              Already on the list?{" "}
               <a
                 href="#pricing"
                 className="inline-flex items-center gap-1 font-medium text-laser-cyan underline-offset-4 hover:underline"
               >
-                Claim Brush Cloud early access
+                Compare studio plans
                 <ArrowRight className="size-3" />
               </a>
             </p>

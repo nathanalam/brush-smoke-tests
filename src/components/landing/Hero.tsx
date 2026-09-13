@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button"
 import { FORMATS } from "@/data/content"
 
 const PROOF = [
-  { value: "100%", label: "Free to capture & export" },
-  { value: "142M+", label: "Points streamed per scene" },
-  { value: "6", label: "Open formats, no lock-in" },
+  { value: "Minutes", label: "From sketch to 3D model" },
+  { value: "1 prompt", label: "To apply a client revision" },
+  { value: "6", label: "Editable export formats" },
 ]
 
 export function Hero() {
@@ -28,24 +28,23 @@ export function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <Badge variant="cyan" className="animate-fade-up">
             <Sparkles className="size-3" />
-            Brush Cloud early access is open
+            Early access for architects
           </Badge>
 
           <h1
             className="animate-fade-up mt-6 text-balance text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl"
             style={{ animationDelay: "60ms" }}
           >
-            LiDAR to CAD in Seconds.{" "}
-            <span className="text-gradient">Edit Physical Reality with Language.</span>
+            Design buildings at the{" "}
+            <span className="text-gradient">speed you think.</span>
           </h1>
 
           <p
             className="animate-fade-up mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
             style={{ animationDelay: "120ms" }}
           >
-            Capture point clouds with your phone for free. Stream directly to Blender and
-            Autodesk, or upload to Brush Cloud to train personalized spatial models you can
-            manipulate with simple prompts.
+            Describe a space, sketch an idea, or upload a plan. Generate and iterate
+            editable architectural models with AI.
           </p>
 
           <div
@@ -54,14 +53,14 @@ export function Hero() {
           >
             <Button size="lg" className="w-full sm:w-auto" asChild>
               <a href="#download">
-                Get Started Free
+                Start designing
                 <ArrowRight className="size-4" />
               </a>
             </Button>
             <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-              <a href="#cloud-ai">
+              <a href="#product">
                 <Play className="size-4" />
-                View Interactive Demo
+                Watch a revision
               </a>
             </Button>
           </div>
@@ -70,7 +69,7 @@ export function Hero() {
             className="animate-fade-up mt-4 text-xs text-muted-foreground"
             style={{ animationDelay: "220ms" }}
           >
-            No credit card. No seat licence. Exports {FORMATS.slice(0, 5).join(", ")} free forever.
+            No credit card. Export {FORMATS.slice(0, 4).join(", ")} and keep the geometry.
           </p>
         </div>
 

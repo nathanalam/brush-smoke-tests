@@ -13,8 +13,8 @@ export function Integrations() {
             Works with the tools you already own
           </Badge>
           <p className="max-w-2xl text-pretty text-sm text-muted-foreground sm:text-base">
-            <span className="font-semibold text-white">Free import & export.</span> No vendor
-            lock-in for LAS, LAZ, E57, PLY, and STEP.
+            <span className="font-semibold text-white">Editable exports.</span> Take the model
+            into Revit, Rhino, AutoCAD, and Archicad — no lock-in.
           </p>
         </div>
 

@@ -5,73 +5,73 @@
  */
 
 export const NAV_LINKS = [
-  { label: "Features", href: "#features" },
+  { label: "How it works", href: "#features" },
   { label: "Integrations", href: "#integrations" },
-  { label: "Cloud & AI", href: "#cloud-ai" },
+  { label: "Product", href: "#product" },
   { label: "Pricing", href: "#pricing" },
 ] as const
 
-export const FORMATS = ["LAS", "LAZ", "E57", "PLY", "OBJ", "STEP"] as const
+export const FORMATS = ["IFC", "DWG", "DXF", "RVT", "3DM", "OBJ"] as const
 
 export const INTEGRATIONS = [
-  { name: "Autodesk", detail: "Revit / Navisworks" },
-  { name: "Blender", detail: "Live bridge add-on" },
-  { name: "Rhino", detail: "Grasshopper stream" },
-  { name: "Unity", detail: "Runtime package" },
-  { name: "Unreal Engine", detail: "Datasmith export" },
+  { name: "Revit", detail: "Editable BIM models" },
+  { name: "AutoCAD", detail: "Drawings & sheets" },
+  { name: "Rhino", detail: "Massing & form" },
+  { name: "SketchUp", detail: "Concept models" },
+  { name: "Archicad", detail: "IFC round-trip" },
 ] as const
 
 export const WORKFLOW_STEPS = [
   {
     step: "01",
-    icon: "scan",
-    title: "Capture Anywhere (Mobile & Free)",
+    icon: "sketch",
+    title: "Describe, sketch, or upload",
     description:
-      "Turn everyday mobile sensors into high-fidelity point cloud scanners. Walk the site, capture at full density, and keep every scan. Zero upfront fees.",
-    bullets: ["LiDAR + photogrammetry fusion", "Offline capture, deferred upload", "No seat licence, no trial clock"],
+      "Drop a floor plan, a napkin sketch, or a few sentences about the space. Brush reads design intent — rooms, circulation, light — not just pixels.",
+    bullets: ["Floor plans, sketches, and briefs", "Existing conditions from a PDF", "No CAD file required to start"],
   },
   {
     step: "02",
     icon: "boxes",
-    title: "Web-Native Labeling & Brush Cloud",
+    title: "Generate an editable 3D model",
     description:
-      "Stream heavy scans straight into our browser client. Draw bounding boxes and label objects effortlessly with assisted primitive snapping.",
-    bullets: ["Streams multi-GB clouds instantly", "Assisted snapping to planes & pipes", "Shareable review links"],
+      "Get a real architectural model in minutes: walls, slabs, stairs, and openings you can still push, pull, and dimension — not a locked rendering.",
+    bullets: ["Concept → 3D model", "Rooms stay parametric", "Explore multiple layouts quickly"],
   },
   {
     step: "03",
     icon: "sparkles",
-    title: "Prompt-Driven 3D Manipulation",
+    title: "Revise in the language of the client",
     description:
-      "Train your custom spatial model, then reposition, segment, and adjust real geometry using natural language commands right in the browser.",
-    bullets: ["Fine-tuned on your own objects", "Deterministic, unit-accurate edits", "Full undo history per prompt"],
+      "Client asked for a larger kitchen and more daylight? Type it. The model updates, drawings stay in sync, and you keep an undo history per prompt.",
+    bullets: ["Natural-language client revisions", "Keep dimensions and constraints", "Export editable drawings & models"],
   },
 ] as const
 
 export const VIEWER_FEATURES = [
   {
-    icon: "zap",
-    title: "Zero-install WebGPU rendering",
+    icon: "boxes",
+    title: "Concept → 3D model",
     description:
-      "A hardware-accelerated viewport that opens from a link. No desktop installs, no GPU workstation, no IT ticket.",
+      "Turn a brief, sketch, or plan into an editable architectural model you can walk, cut, and dimension — in minutes, not a modelling week.",
   },
   {
-    icon: "gauge",
-    title: "Hundreds of millions of points",
+    icon: "message",
+    title: "Client revisions in plain language",
     description:
-      "Adaptive octree streaming keeps navigation at 60fps while only the visible detail travels over the wire.",
+      "“Make the kitchen 20% larger and move the stair to the east wall.” Brush applies the change to the live model instead of sending you back to redraw.",
   },
   {
-    icon: "users",
-    title: "Collaborative viewports",
+    icon: "layout",
+    title: "Explore multiple layouts quickly",
     description:
-      "Send a link and review together. Camera state, labels, and prompt history stay in sync across everyone in the scene.",
+      "Generate alternatives for massing, circulation, and daylight without rebuilding the file. Keep the options that survive the client meeting.",
   },
   {
-    icon: "lock",
-    title: "Your data, your formats",
+    icon: "download",
+    title: "Export editable drawings and models",
     description:
-      "Everything round-trips to open formats. Export the labeled cloud whenever you like — there is no lock-in.",
+      "Round-trip to IFC, DWG, Revit, and Rhino. What you generate stays geometry you own — not a one-way render.",
   },
 ] as const
 
@@ -94,73 +94,73 @@ export const PLANS: Plan[] = [
     id: "starter",
     name: "Starter",
     monthly: 5,
-    tagline: "For solo makers putting their first scans in the cloud.",
-    storage: "25 GB",
-    aiCredits: "50 prompts / mo",
-    cta: "Start with Starter",
+    tagline: "For solo architects testing concept-to-model on a first project.",
+    storage: "3 projects",
+    aiCredits: "50 revisions / mo",
+    cta: "Start designing",
     features: [
-      "Up to 25 GB cloud blob storage",
-      "Standard LAS/E57 web streaming",
-      "Up to 50 AI natural language spatial prompts/mo",
-      "Basic point-to-box labeling tools",
-      "Free export to Blender & Autodesk",
+      "Up to 3 active projects",
+      "Sketch, plan, and brief import",
+      "Up to 50 natural-language model revisions / mo",
+      "Concept 3D models with basic sheets",
+      "Export to IFC, DWG, and OBJ",
     ],
   },
   {
     id: "pro",
-    name: "Pro",
+    name: "Studio",
     monthly: 15,
-    tagline: "For working architects and VDC engineers shipping weekly.",
-    storage: "150 GB",
-    aiCredits: "500 edits / mo",
+    tagline: "For working architects iterating with clients every week.",
+    storage: "25 projects",
+    aiCredits: "500 revisions / mo",
     popular: true,
-    cta: "Get Pro",
+    cta: "Get Studio",
     features: [
-      "Up to 150 GB cloud blob storage",
-      "High-density streaming with WebGPU-accelerated viewer",
-      "Up to 500 AI natural language spatial manipulations/mo",
-      "Custom fine-tuned spatial models for personalized objects",
-      "Automated semantic pre-labeling & primitive snapping",
+      "Up to 25 active projects",
+      "High-fidelity editable architectural models",
+      "Up to 500 natural-language revisions / mo",
+      "Layout alternatives and daylight studies",
+      "Revit, Rhino, and AutoCAD round-trip",
     ],
   },
   {
     id: "scale",
-    name: "Scale / Studio",
+    name: "Practice",
     monthly: 100,
-    tagline: "For teams running continuous capture across many sites.",
-    storage: "1.5 TB",
-    aiCredits: "5,000+ edits / mo",
+    tagline: "For studios running many jobs and client reviews in parallel.",
+    storage: "Unlimited",
+    aiCredits: "5,000+ revisions / mo",
     cta: "Talk to us",
     features: [
-      "Up to 1.5 TB cloud blob storage",
-      "Unlimited multi-user collaborative web viewports",
-      "5,000+ AI natural language edits & continuous training runs",
-      "High-priority model adaptation pipelines",
-      "Webhook sync for Autodesk/Blender pipelines & dedicated support",
+      "Unlimited projects across the practice",
+      "Shared review links for clients and consultants",
+      "5,000+ natural-language edits and continuous generation",
+      "Priority model quality and dedicated onboarding",
+      "BIM pipeline sync and practice-wide support",
     ],
   },
 ]
 
 export const FAQS = [
   {
-    question: "Is the mobile app really free?",
+    question: "Is this a rendering tool or real CAD?",
     answer:
-      "Yes — genuinely free, with no trial timer and no seat licence. Capturing, importing, and exporting across LAS, LAZ, E57, PLY, OBJ, and STEP costs nothing, and scans you capture stay yours on-device forever. We only charge when you opt into Brush Cloud for hosted storage, the web viewer, and AI spatial editing.",
+      "Real, editable models. Brush generates walls, slabs, stairs, and openings you can still dimension, constrain, and export — not a locked image. The point is faster concept-to-model iteration, then a file you can take into Revit, Rhino, or AutoCAD.",
   },
   {
-    question: "How does language-based spatial manipulation work?",
+    question: "How do natural-language revisions work?",
     answer:
-      "When you label objects in the web client, Brush fine-tunes a small spatial model on your own geometry so it learns what a 'structural pillar' or 'MEP conduit' looks like in your scans. A prompt like “Move the structural pillar 0.5m north” is resolved into a concrete, unit-accurate transform against the selected point set — so you can review the exact delta and undo it before committing.",
+      "A prompt like “Make the kitchen 20% larger, move the staircase to the east wall, and add more natural light” is resolved against the live model: rooms scale, circulation relocates, openings update. You review the delta, undo if needed, and drawings stay in sync with the geometry.",
   },
   {
-    question: "Can I export my labeled point clouds back to Blender and Autodesk?",
+    question: "Can I start from a sketch or an existing plan?",
     answer:
-      "Always. Labels, bounding boxes, and semantic classes travel with the geometry on export, and the round-trip is free on every tier including the free mobile app. Pro and Scale add webhook sync so a committed edit can push straight into a Revit, Navisworks, or Blender pipeline without a manual download.",
+      "Yes. Upload a floor plan PDF, a photo of a napkin sketch, or type a brief. You do not need a finished CAD file to generate a first model — and if you already have DWG, IFC, or Revit, you can iterate from there.",
   },
   {
-    question: "What happens if I exceed my monthly cloud storage blob limits?",
+    question: "What do I export, and who owns the geometry?",
     answer:
-      "Nothing breaks and nothing is deleted. Uploads pause once you reach your ceiling and existing scans stay fully readable and exportable. You can clear space, upgrade a tier, or add metered overage at a flat per-GB rate — and we notify you at 80% so it is never a surprise.",
+      "You own it. Export IFC, DWG, DXF, Revit, Rhino 3DM, and OBJ on every tier. There is no lock-in and no export tax — generated models are meant to live in the tools your practice already uses.",
   },
 ] as const
 
@@ -168,20 +168,20 @@ export const FOOTER_LINKS = [
   {
     heading: "Product",
     links: [
-      { label: "Features", href: "#features" },
+      { label: "How it works", href: "#features" },
       { label: "Integrations", href: "#integrations" },
-      { label: "Cloud & AI", href: "#cloud-ai" },
+      { label: "Product", href: "#product" },
       { label: "Pricing", href: "#pricing" },
       { label: "Changelog", href: "#" },
     ],
   },
   {
-    heading: "Developers",
+    heading: "Resources",
     links: [
       { label: "Documentation", href: "#" },
-      { label: "API Reference", href: "#" },
-      { label: "Blender Add-on", href: "#" },
-      { label: "Autodesk Plugin", href: "#" },
+      { label: "Revit plugin", href: "#" },
+      { label: "Rhino plugin", href: "#" },
+      { label: "AutoCAD export", href: "#" },
       { label: "Status", href: "#" },
     ],
   },

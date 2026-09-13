@@ -89,7 +89,7 @@ export function Navbar() {
             <a href="#">Sign In</a>
           </Button>
           <Button size="sm" asChild>
-            <a href="#download">Download App (Free)</a>
+            <a href="#download">Get early access</a>
           </Button>
         </div>
 
@@ -128,7 +128,7 @@ export function Navbar() {
             </Button>
             <Button asChild>
               <a href="#download" onClick={() => setOpen(false)}>
-                Download App (Free)
+                Get early access
               </a>
             </Button>
           </div>

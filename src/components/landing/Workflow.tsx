@@ -1,10 +1,10 @@
-import { Boxes, Check, ScanLine, Sparkles, type LucideIcon } from "lucide-react"
+import { Boxes, Check, PenLine, Sparkles, type LucideIcon } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { WORKFLOW_STEPS } from "@/data/content"
 
 const ICONS: Record<string, LucideIcon> = {
-  scan: ScanLine,
+  sketch: PenLine,
   boxes: Boxes,
   sparkles: Sparkles,
 }
@@ -16,16 +16,16 @@ export function Workflow() {
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="violet">Core workflow</Badge>
           <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Phone in hand to prompt-edited geometry — in three steps
+            From intent to an editable model — in three steps
           </h2>
           <p className="mt-4 text-pretty text-base text-muted-foreground">
-            No desktop licence to buy before you start, and no export tax when you finish.
+            Stop redrawing the plan every time the client changes their mind.
           </p>
         </div>
 
         <ol className="mt-14 grid grid-cols-1 gap-5 lg:grid-cols-3">
           {WORKFLOW_STEPS.map((step) => {
-            const Icon = ICONS[step.icon] ?? ScanLine
+            const Icon = ICONS[step.icon] ?? PenLine
             return (
               <li key={step.step}>
                 <article className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-laser-cyan/30 hover:bg-white/[0.05] hover:shadow-xl hover:shadow-laser-cyan/5">

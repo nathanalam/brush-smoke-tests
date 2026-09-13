@@ -1,49 +1,61 @@
 import * as React from "react"
-import { Gauge, Lock, Users, Zap, type LucideIcon } from "lucide-react"
+import { Boxes, Download, LayoutGrid, MessageSquare, Zap, type LucideIcon } from "lucide-react"
 
-import { PointCloudScene, type SceneMode } from "@/components/landing/PointCloudScene"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { VIEWER_FEATURES } from "@/data/content"
 
-const ICONS: Record<string, LucideIcon> = { zap: Zap, gauge: Gauge, users: Users, lock: Lock }
+const ICONS: Record<string, LucideIcon> = {
+  boxes: Boxes,
+  message: MessageSquare,
+  layout: LayoutGrid,
+  download: Download,
+}
 
 interface DemoStage {
-  id: SceneMode
+  id: string
   label: string
   caption: string
   readout: string
+  image: string
+  alt: string
 }
 
 const STAGES: DemoStage[] = [
   {
-    id: "raw",
-    label: "Raw Scan",
+    id: "plan",
+    label: "Sketch & Plan",
     caption:
-      "Straight off the phone: 8.4M unclassified returns, captured handheld in about four minutes.",
-    readout: "capture://warehouse-b7.laz · 8,412,660 pts · unclassified",
+      "Drop a floor plan, a napkin sketch, or a short brief. Brush reads the intent — rooms, circulation, light — not just the pixels.",
+    readout: "input://east-house-plan.pdf · sketch + brief",
+    image: "/images/plan.jpg",
+    alt: "Architect marking up a floor plan on the drawing board",
   },
   {
-    id: "labeled",
-    label: "Labeled Cloud",
+    id: "model",
+    label: "Generated Model",
     caption:
-      "Boxes snap to primitives as you draw. Classes persist through every export, in any format.",
-    readout: "labels: structural_pillar ×1, mep_conduit ×3 · snapping: on",
+      "An editable architectural model in minutes: walls, slabs, stairs, and openings you can still push, pull, and dimension.",
+    readout: "model: kitchen, stair, living · 4 layouts explored",
+    image: "/images/house.jpg",
+    alt: "Generated two-storey house model with stair and kitchen visible",
   },
   {
-    id: "ai",
-    label: "AI Language Manipulation",
+    id: "revision",
+    label: "Client Revision",
     caption:
-      "Prompt the scene in plain language. Brush resolves it to an exact, reviewable transform.",
-    readout: '"Reposition the electrical conduits +20cm" → Δy +0.200m · 41,208 pts',
+      "“Make the kitchen 20% larger, move the staircase to the east wall, and add more natural light.” The model updates. Drawings stay in sync.",
+    readout: "Kitchen +20% · stair → east wall · openings added · undo available",
+    image: "/images/kitchen.jpg",
+    alt: "Revised kitchen with a larger island and more daylight",
   },
 ]
 
 export function ViewerSpotlight() {
-  const [stage, setStage] = React.useState<SceneMode>("labeled")
+  const [stage, setStage] = React.useState("model")
 
   return (
-    <section id="cloud-ai" className="relative overflow-hidden py-20 sm:py-28">
+    <section id="product" className="relative overflow-hidden py-20 sm:py-28">
       <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-25" aria-hidden="true" />
       <div
         className="pointer-events-none absolute inset-0 opacity-60"
@@ -58,22 +70,18 @@ export function ViewerSpotlight() {
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="cyan">
             <Zap className="size-3" />
-            Interactive web viewer
+            From intent to model
           </Badge>
           <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            A full spatial workstation, running in a browser tab
+            Client changes land in the model, not another redraw
           </h2>
           <p className="mt-4 text-pretty text-base text-muted-foreground">
-            Zero-install WebGPU rendering means fast manipulation without the desktop bloat —
-            open a link and you are already working.
+            Describe the revision in the same language the client used. Brush applies it to live,
+            editable geometry.
           </p>
         </div>
 
-        <Tabs
-          value={stage}
-          onValueChange={(v) => setStage(v as SceneMode)}
-          className="mt-12"
-        >
+        <Tabs value={stage} onValueChange={setStage} className="mt-12">
           <div className="flex justify-center">
             <TabsList className="w-full max-w-full overflow-x-auto sm:w-auto">
               {STAGES.map((s) => (
@@ -88,14 +96,13 @@ export function ViewerSpotlight() {
             <TabsContent key={s.id} value={s.id}>
               <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f16] shadow-2xl shadow-black/50">
                 <div className="relative aspect-[16/10]">
-                  {/* One scene instance per tab keeps the transition state honest. */}
-                  <PointCloudScene
-                    mode={s.id}
-                    scanning={s.id === "raw"}
-                    className="absolute inset-0 h-full w-full"
+                  <img
+                    src={s.image}
+                    alt={s.alt}
+                    className="absolute inset-0 h-full w-full object-cover"
                   />
                   <div className="absolute left-3 top-3 rounded border border-white/10 bg-black/60 px-2 py-1 font-mono text-[10px] text-white/70 backdrop-blur-md">
-                    {s.id === "raw" ? "streaming…" : "142M pts · 60 fps"}
+                    {s.id === "plan" ? "reading intent…" : "editable model"}
                   </div>
                 </div>
                 <div className="space-y-2 border-t border-white/10 bg-white/[0.03] p-4">

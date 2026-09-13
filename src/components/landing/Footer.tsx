@@ -36,8 +36,8 @@ export function Footer() {
               Brush
             </a>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Mobile-first reality capture and 3D intelligence. Scan with your phone, edit reality
-              with language.
+              AI-native design for architects. Describe a space, generate a model, iterate at the
+              speed of thought.
             </p>
           </div>
 
@@ -67,7 +67,7 @@ export function Footer() {
             © {new Date().getFullYear()} Brush. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            Built for architects, 3D artists, VDC engineers, and field crews.
+            Built for architects who are done redrawing the same plan.
           </p>
         </div>
       </div>

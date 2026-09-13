@@ -21,13 +21,13 @@ export function Pricing() {
     <section id="pricing" className="border-t border-white/10 py-20 sm:py-28">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="violet">Usage-based pricing</Badge>
+          <Badge variant="violet">Simple pricing</Badge>
           <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            The app is free. Pay only for cloud and AI.
+            Start free. Scale with the studio.
           </h2>
           <p className="mt-4 text-pretty text-base text-muted-foreground">
-            Tiers are governed by two meters: blob storage and AI query/training units. Capture,
-            import, and export never count against either.
+            Tiers are governed by two meters: active projects and AI revisions. Imports and
+            editable exports never count against either.
           </p>
         </div>
 
@@ -112,7 +112,7 @@ export function Pricing() {
                   <div className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
                     <dt className="flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
                       <HardDrive className="size-3 text-laser-cyan" aria-hidden="true" />
-                      Storage
+                      Projects
                     </dt>
                     <dd className="mt-1 text-sm font-semibold text-white">{plan.storage}</dd>
                   </div>
@@ -153,8 +153,8 @@ export function Pricing() {
         </div>
 
         <p className="mt-8 text-center text-xs text-muted-foreground">
-          Every tier includes the free mobile app, unlimited local captures, and free round-trip
-          export to Blender and Autodesk.
+          Every tier includes sketch and plan import, natural-language revisions, and editable
+          export to IFC, DWG, Revit, and Rhino.
         </p>
       </div>
     </section>
