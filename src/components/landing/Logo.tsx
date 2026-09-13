@@ -9,7 +9,7 @@ export function Logo({ className }: { className?: string }) {
         "group inline-flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900",
         className,
       )}
-      aria-label="Brush — home"
+      aria-label="Brush, back to top"
     >
       <span className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-ink-600 bg-ink-800 transition-colors group-hover:border-blueprint/60">
         <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">

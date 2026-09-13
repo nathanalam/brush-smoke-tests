@@ -1,11 +1,9 @@
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
-import { ComparisonStrip } from "@/components/landing/ComparisonStrip";
-import { FeaturePillars } from "@/components/landing/FeaturePillars";
-import { FeatureSpotlight } from "@/components/landing/FeatureSpotlight";
+import { Comparison } from "@/components/landing/Comparison";
+import { Benefits } from "@/components/landing/Benefits";
 import { Pricing } from "@/components/landing/Pricing";
 import { FAQ } from "@/components/landing/FAQ";
-import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
 
 export default function App() {
@@ -14,12 +12,10 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <ComparisonStrip />
-        <FeaturePillars />
-        <FeatureSpotlight />
+        <Comparison />
+        <Benefits />
         <Pricing />
         <FAQ />
-        <FinalCTA />
       </main>
       <Footer />
     </div>

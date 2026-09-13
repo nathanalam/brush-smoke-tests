@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/landing/Logo";
 import { NAV_LINKS, CTA_LABEL, SIGNUP_HREF } from "@/data/navigation";
+import { trackSignupClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -56,7 +57,9 @@ export function Navbar() {
             Sign in
           </a>
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <a href={SIGNUP_HREF}>{CTA_LABEL}</a>
+            <a href={SIGNUP_HREF} onClick={() => trackSignupClick("navbar")}>
+              {CTA_LABEL}
+            </a>
           </Button>
           <button
             type="button"
@@ -84,7 +87,13 @@ export function Navbar() {
               </a>
             ))}
             <Button asChild size="md" className="mt-3 w-full">
-              <a href={SIGNUP_HREF} onClick={() => setOpen(false)}>
+              <a
+                href={SIGNUP_HREF}
+                onClick={() => {
+                  trackSignupClick("navbar_mobile");
+                  setOpen(false);
+                }}
+              >
                 {CTA_LABEL}
               </a>
             </Button>
