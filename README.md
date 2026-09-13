@@ -46,27 +46,24 @@ PostHog is wired up in `src/lib/analytics.ts` and started from `src/main.tsx`.
 Out of the box it captures `$pageview`, `$autocapture` (every CTA click, with the
 button text), heatmaps, and web vitals — no per-element instrumentation needed.
 
-**Configuration** is optional; the app ships with a working project key. Override via
-env vars (see `.env.example`) to point a fork or staging deploy elsewhere:
-
-| Variable | Default | Purpose |
-| --- | --- | --- |
-| `VITE_POSTHOG_KEY` | built-in project key | PostHog project API key |
-| `VITE_POSTHOG_HOST` | `https://us.i.posthog.com` | Ingestion host (`eu.` for EU cloud) |
-| `VITE_POSTHOG_DEV` | unset | Set to `true` to capture from `npm run dev` |
+The project key and host are plain constants in `analytics.ts`. A PostHog project
+API key is public and write-only by design, and the host is one of PostHog's
+validated endpoints, so neither is a secret or a per-deploy value — and a Vite
+`VITE_*` env var would inline to the same literal at build time regardless.
+Point at a different project by editing the two constants.
 
 Notes on the implementation:
 
-- **The key is safe to commit.** A PostHog project API key is a public, write-only
-  client key that is designed to ship in browser bundles.
-- **Dev traffic is excluded by default** so local browsing does not skew conversion
-  metrics. Opt in with `VITE_POSTHOG_DEV=true`.
-- **The library is loaded lazily**, on `requestIdleCallback`, rather than bundled into
-  the main chunk. posthog-js is ~98kB gzipped — more than the entire rest of the app —
-  and blocking first paint with it on a conversion page is a bad trade. It lands in its
-  own async chunk and the pageview fires a few hundred ms later.
-- **`window.posthog` is exposed** after init. The inline snippet does this natively but
-  the module build does not; it is what the PostHog toolbar and console debugging need.
+- **The library is loaded lazily**, on `requestIdleCallback`, rather than bundled
+  into the main chunk. posthog-js is ~98kB gzipped — more than the entire rest of
+  the app — and blocking first paint with it on a conversion page is a bad trade.
+  It lands in its own async chunk and the pageview fires a few hundred ms later.
+- **`window.posthog` is exposed** after init. The inline snippet does this natively
+  but the module build does not; it is what the PostHog toolbar and console
+  debugging need.
+- **Dev-server traffic is skipped** (`import.meta.env.PROD`) so local browsing does
+  not skew conversion metrics. To exercise analytics locally, run `npm run preview`
+  against a production build.
 
 For custom events beyond autocapture:
 

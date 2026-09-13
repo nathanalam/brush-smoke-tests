@@ -7,26 +7,12 @@ declare global {
 }
 
 /**
- * PostHog setup.
- *
- * The project API key is a *public*, write-only client key — PostHog designs it
- * to ship in browser bundles, so the default below is safe to commit. It is read
- * from the environment first so a fork or a staging deploy can point at its own
- * project without touching code.
+ * PostHog project API key — public and write-only. PostHog designs this key to
+ * ship in browser bundles, so it lives in source rather than behind a build-time
+ * env var that would inline to this same string anyway.
  */
-const POSTHOG_KEY =
-  import.meta.env.VITE_POSTHOG_KEY ?? "phc_BY23i9WY2n7wn4jked5NkDZT2S8yewnipjddfy86FkWX"
-
-const POSTHOG_HOST = import.meta.env.VITE_POSTHOG_HOST ?? "https://us.i.posthog.com"
-
-/**
- * Local `npm run dev` traffic is excluded by default so it does not pollute
- * funnel and conversion numbers. Set VITE_POSTHOG_DEV=true to opt a dev server
- * in when you are specifically testing the integration.
- */
-const enabled =
-  Boolean(POSTHOG_KEY) &&
-  (import.meta.env.PROD || import.meta.env.VITE_POSTHOG_DEV === "true")
+const POSTHOG_KEY = "phc_BY23i9WY2n7wn4jked5NkDZT2S8yewnipjddfy86FkWX"
+const POSTHOG_HOST = "https://us.i.posthog.com"
 
 let client: Promise<PostHog> | null = null
 
@@ -49,13 +35,17 @@ function load(): Promise<PostHog> {
 /**
  * Loads PostHog off the critical path.
  *
- * The library is ~100kB gzipped — bundling it statically would delay first paint
- * on a page whose whole job is conversion. Importing it dynamically on idle keeps
- * it out of the main chunk; the pageview lands a few hundred ms later, which
- * PostHog handles fine.
+ * The library is ~98kB gzipped — more than the rest of the app combined — so
+ * bundling it statically would delay first paint on a page whose whole job is
+ * conversion. Importing it dynamically on idle keeps it out of the main chunk;
+ * the pageview lands a few hundred ms later, which PostHog handles fine.
+ *
+ * Dev-server traffic is skipped so local browsing does not skew conversion
+ * metrics. To exercise analytics locally, run `npm run preview` against a
+ * production build.
  */
 export function initAnalytics() {
-  if (!enabled || client) return
+  if (!import.meta.env.PROD || client) return
 
   const start = () => {
     client ??= load()
@@ -71,10 +61,10 @@ export function initAnalytics() {
 /**
  * Access the client for custom events, e.g.
  * `void getPostHog()?.then((ph) => ph.capture("cta_clicked"))`.
- * Returns null when analytics is disabled (dev, or no key configured).
+ * Returns null on a dev server, where analytics is disabled.
  */
 export function getPostHog(): Promise<PostHog> | null {
-  if (!enabled) return null
+  if (!import.meta.env.PROD) return null
   client ??= load()
   return client
 }
