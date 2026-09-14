@@ -3,6 +3,7 @@ import { ArrowRight, Calendar, Sparkles } from "lucide-react"
 import { HeroVisual } from "@/components/landing/HeroVisual"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useSignup } from "@/components/signup/SignupFlow"
 
 const PROOF = [
   { value: "Hours, not days", label: "Brief to an editable model" },
@@ -11,6 +12,8 @@ const PROOF = [
 ]
 
 export function Hero() {
+  const { openSignup } = useSignup()
+
   return (
     <section id="top" className="relative overflow-hidden pb-16 pt-28 sm:pb-24 sm:pt-36">
       <div className="grid-backdrop pointer-events-none absolute inset-0 opacity-40" aria-hidden="true" />
@@ -50,17 +53,22 @@ export function Hero() {
             className="animate-fade-up mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
             style={{ animationDelay: "180ms" }}
           >
-            <Button size="lg" className="w-full sm:w-auto" asChild>
-              <a href="#download">
-                Start a project
-                <ArrowRight className="size-4" />
-              </a>
+            <Button
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={() => openSignup({ intent: "start", source: "hero" })}
+            >
+              Start a project
+              <ArrowRight className="size-4" />
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-              <a href="#download">
-                <Calendar className="size-4" />
-                Book a demo
-              </a>
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto"
+              onClick={() => openSignup({ intent: "demo", source: "hero" })}
+            >
+              <Calendar className="size-4" />
+              Book a demo
             </Button>
           </div>
 

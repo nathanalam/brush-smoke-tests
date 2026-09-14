@@ -5,9 +5,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Badge } from "@/components/ui/badge"
+import { useSignup } from "@/components/signup/SignupFlow"
 import { FAQS } from "@/data/content"
 
 export function FAQ() {
+  const { openSignup } = useSignup()
+
   return (
     <section id="faq" className="border-t border-white/10 py-20 sm:py-28">
       <div className="container">
@@ -30,9 +33,13 @@ export function FAQ() {
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
             Still deciding?{" "}
-            <a href="#download" className="font-medium text-laser-cyan underline-offset-4 hover:underline">
+            <button
+              type="button"
+              onClick={() => openSignup({ intent: "demo", source: "faq" })}
+              className="font-medium text-laser-cyan underline-offset-4 hover:underline"
+            >
               Book a 20-minute studio demo
-            </a>
+            </button>
             .
           </p>
         </div>

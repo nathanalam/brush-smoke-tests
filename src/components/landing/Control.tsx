@@ -2,6 +2,7 @@ import { PenLine, Share2, Sparkles, type LucideIcon } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useSignup } from "@/components/signup/SignupFlow"
 import { CONTROL_POINTS } from "@/data/content"
 
 const ICONS: Record<string, LucideIcon> = {
@@ -11,6 +12,8 @@ const ICONS: Record<string, LucideIcon> = {
 }
 
 export function Control() {
+  const { openSignup } = useSignup()
+
   return (
     <section id="control" className="py-20 sm:py-28">
       <div className="container">
@@ -25,8 +28,8 @@ export function Control() {
               models fast, then gets out of the way when you take over — the same way a strong
               intern should.
             </p>
-            <Button className="mt-8" asChild>
-              <a href="#download">Start a live project</a>
+            <Button className="mt-8" onClick={() => openSignup({ intent: "start", source: "control" })}>
+              Start a live project
             </Button>
           </div>
 

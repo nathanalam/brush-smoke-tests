@@ -10,8 +10,11 @@ import { SocialProof } from "@/components/landing/SocialProof"
 import { Testimonials } from "@/components/landing/Testimonials"
 import { ViewerSpotlight } from "@/components/landing/ViewerSpotlight"
 import { Workflow } from "@/components/landing/Workflow"
+import { Confirmation } from "@/components/signup/Confirmation"
+import { SignupProvider } from "@/components/signup/SignupFlow"
+import { usePath } from "@/lib/nav"
 
-export default function App() {
+function Landing() {
   return (
     <div className="min-h-screen bg-background">
       <a
@@ -36,5 +39,15 @@ export default function App() {
       </main>
       <Footer />
     </div>
+  )
+}
+
+export default function App() {
+  const path = usePath()
+
+  return (
+    <SignupProvider>
+      {path === "/confirmation" ? <Confirmation /> : <Landing />}
+    </SignupProvider>
   )
 }

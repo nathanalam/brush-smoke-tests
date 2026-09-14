@@ -2,8 +2,11 @@ import { ArrowRight, Building2, Calendar } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useSignup } from "@/components/signup/SignupFlow"
 
 export function DownloadCTA() {
+  const { openSignup } = useSignup()
+
   return (
     <section id="download" className="relative overflow-hidden py-20 sm:py-28">
       <div
@@ -30,17 +33,22 @@ export function DownloadCTA() {
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button size="lg" className="w-full sm:w-auto" asChild>
-              <a href="#">
-                Start free for 14 days
-                <ArrowRight className="size-4" />
-              </a>
+            <Button
+              size="lg"
+              className="w-full sm:w-auto"
+              onClick={() => openSignup({ intent: "start", source: "footer_cta" })}
+            >
+              Start free for 14 days
+              <ArrowRight className="size-4" />
             </Button>
-            <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-              <a href="#">
-                <Calendar className="size-4" />
-                Book a studio demo
-              </a>
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full sm:w-auto"
+              onClick={() => openSignup({ intent: "demo", source: "footer_cta" })}
+            >
+              <Calendar className="size-4" />
+              Book a studio demo
             </Button>
           </div>
 

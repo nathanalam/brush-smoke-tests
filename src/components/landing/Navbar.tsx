@@ -3,10 +3,12 @@ import { Menu, X } from "lucide-react"
 
 import { FormaMark } from "@/components/landing/FormaMark"
 import { Button } from "@/components/ui/button"
+import { useSignup } from "@/components/signup/SignupFlow"
 import { BRAND, NAV_LINKS } from "@/data/content"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
+  const { openSignup } = useSignup()
   const [open, setOpen] = React.useState(false)
   const [scrolled, setScrolled] = React.useState(false)
 
@@ -59,11 +61,11 @@ export function Navbar() {
         </ul>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button variant="ghost" size="sm" asChild>
-            <a href="#">Log in</a>
+          <Button variant="ghost" size="sm" onClick={() => openSignup({ intent: "login", source: "nav" })}>
+            Log in
           </Button>
-          <Button size="sm" asChild>
-            <a href="#download">Start free</a>
+          <Button size="sm" onClick={() => openSignup({ intent: "start", source: "nav" })}>
+            Start free
           </Button>
         </div>
 
@@ -95,15 +97,22 @@ export function Navbar() {
             ))}
           </ul>
           <div className="mt-3 flex flex-col gap-2">
-            <Button variant="outline" asChild>
-              <a href="#" onClick={() => setOpen(false)}>
-                Log in
-              </a>
+            <Button
+              variant="outline"
+              onClick={() => {
+                setOpen(false)
+                openSignup({ intent: "login", source: "nav_mobile" })
+              }}
+            >
+              Log in
             </Button>
-            <Button asChild>
-              <a href="#download" onClick={() => setOpen(false)}>
-                Start free
-              </a>
+            <Button
+              onClick={() => {
+                setOpen(false)
+                openSignup({ intent: "start", source: "nav_mobile" })
+              }}
+            >
+              Start free
             </Button>
           </div>
         </div>

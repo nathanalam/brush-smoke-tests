@@ -4,6 +4,7 @@ import { Check, Cpu, HardDrive, Sparkles } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
+import { useSignup } from "@/components/signup/SignupFlow"
 import { PLANS } from "@/data/content"
 import { cn } from "@/lib/utils"
 
@@ -15,6 +16,7 @@ function formatPrice(value: number) {
 }
 
 export function Pricing() {
+  const { openSignup } = useSignup()
   const [annual, setAnnual] = React.useState(false)
 
   return (
@@ -150,9 +152,15 @@ export function Pricing() {
                 <Button
                   className="mt-7 w-full"
                   variant={plan.popular ? "default" : "outline"}
-                  asChild
+                  onClick={() =>
+                    openSignup({
+                      intent: plan.custom ? "demo" : "start",
+                      source: "pricing",
+                      plan: plan.id,
+                    })
+                  }
                 >
-                  <a href="#download">{plan.cta}</a>
+                  {plan.cta}
                 </Button>
               </div>
             )

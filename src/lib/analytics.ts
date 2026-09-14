@@ -6,11 +6,6 @@ declare global {
   }
 }
 
-/**
- * PostHog project API key — public and write-only. PostHog designs this key to
- * ship in browser bundles, so it lives in source rather than behind a build-time
- * env var that would inline to this same string anyway.
- */
 const POSTHOG_KEY = "phc_BY23i9WY2n7wn4jked5NkDZT2S8yewnipjddfy86FkWX"
 const POSTHOG_HOST = "https://us.i.posthog.com"
 
@@ -21,29 +16,13 @@ function load(): Promise<PostHog> {
     posthog.init(POSTHOG_KEY, {
       api_host: POSTHOG_HOST,
       defaults: "2026-05-30",
-      // Anonymous visitors stay anonymous; profiles are only created once
-      // someone identifies (e.g. after sign-up).
       person_profiles: "identified_only",
     })
-    // The inline snippet exposes `window.posthog`; the module build does not.
-    // Restoring it enables the PostHog toolbar and console debugging.
     window.posthog = posthog
     return posthog
   })
 }
 
-/**
- * Loads PostHog off the critical path.
- *
- * The library is ~98kB gzipped — more than the rest of the app combined — so
- * bundling it statically would delay first paint on a page whose whole job is
- * conversion. Importing it dynamically on idle keeps it out of the main chunk;
- * the pageview lands a few hundred ms later, which PostHog handles fine.
- *
- * Dev-server traffic is skipped so local browsing does not skew conversion
- * metrics. To exercise analytics locally, run `npm run preview` against a
- * production build.
- */
 export function initAnalytics() {
   if (!import.meta.env.PROD || client) return
 
@@ -58,13 +37,55 @@ export function initAnalytics() {
   }
 }
 
-/**
- * Access the client for custom events, e.g.
- * `void getPostHog()?.then((ph) => ph.capture("cta_clicked"))`.
- * Returns null on a dev server, where analytics is disabled.
- */
 export function getPostHog(): Promise<PostHog> | null {
+  if (typeof window !== "undefined" && window.posthog) {
+    return Promise.resolve(window.posthog)
+  }
   if (!import.meta.env.PROD) return null
   client ??= load()
   return client
+}
+
+export interface SignupEvent {
+  email: string
+  name: string
+  studio: string
+  role: string
+  typology: string
+  intent: string
+  source: string
+  plan?: string
+}
+
+function withClient(run: (ph: PostHog) => void) {
+  if (typeof window !== "undefined" && window.posthog?.capture) {
+    run(window.posthog)
+    return
+  }
+  void getPostHog()?.then(run)
+}
+
+export function captureSignup(event: SignupEvent) {
+  withClient((ph) => {
+    ph.identify(event.email, {
+      email: event.email,
+      name: event.name,
+      studio: event.studio,
+      role: event.role,
+    })
+    ph.capture("signup_submitted", event)
+  })
+}
+
+export function captureConfirmation(event: Partial<SignupEvent>) {
+  withClient((ph) => {
+    ph.capture("$pageview", {
+      $current_url: window.location.href,
+      title: "Confirmation",
+    })
+    ph.capture("signup_completed", {
+      ...event,
+      path: "/confirmation",
+    })
+  })
 }
