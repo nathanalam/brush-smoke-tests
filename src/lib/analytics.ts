@@ -88,4 +88,15 @@ export function captureConfirmation(event: Partial<SignupEvent>) {
       path: "/confirmation",
     })
   })
+
+  window.gtag?.("event", "page_view", {
+    page_path: "/confirmation",
+    page_title: "Confirmation",
+  })
+  window.gtag?.("event", "signup_completed", {
+    send_to: "AW-18449746205",
+    intent: event.intent,
+    source: event.source,
+    plan: event.plan,
+  })
 }
