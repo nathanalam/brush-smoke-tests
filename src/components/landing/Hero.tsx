@@ -1,14 +1,13 @@
-import { ArrowRight, Play, Sparkles } from "lucide-react"
+import { ArrowRight, Calendar, Sparkles } from "lucide-react"
 
 import { HeroVisual } from "@/components/landing/HeroVisual"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { FORMATS } from "@/data/content"
 
 const PROOF = [
-  { value: "Minutes", label: "From sketch to 3D model" },
-  { value: "1 prompt", label: "To apply a client revision" },
-  { value: "6", label: "Editable export formats" },
+  { value: "Hours, not days", label: "Brief to an editable model" },
+  { value: "In the meeting", label: "Client revisions, applied live" },
+  { value: "Revit & Rhino", label: "Clean export, no lock-in" },
 ]
 
 export function Hero() {
@@ -28,7 +27,7 @@ export function Hero() {
         <div className="mx-auto max-w-3xl text-center">
           <Badge variant="cyan" className="animate-fade-up">
             <Sparkles className="size-3" />
-            Early access for architects
+            The AI design workspace for architects
           </Badge>
 
           <h1
@@ -43,8 +42,8 @@ export function Hero() {
             className="animate-fade-up mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
             style={{ animationDelay: "120ms" }}
           >
-            Describe a space, sketch an idea, or upload a plan. Generate and iterate
-            editable architectural models with AI.
+            From brief to an editable model — then into Revit, Rhino, and CAD. Describe a space,
+            sketch an idea, or upload a plan. AI accelerates iteration. You stay in control.
           </p>
 
           <div
@@ -53,14 +52,14 @@ export function Hero() {
           >
             <Button size="lg" className="w-full sm:w-auto" asChild>
               <a href="#download">
-                Start designing
+                Start a project
                 <ArrowRight className="size-4" />
               </a>
             </Button>
             <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-              <a href="#product">
-                <Play className="size-4" />
-                Watch a revision
+              <a href="#download">
+                <Calendar className="size-4" />
+                Book a demo
               </a>
             </Button>
           </div>
@@ -69,7 +68,7 @@ export function Hero() {
             className="animate-fade-up mt-4 text-xs text-muted-foreground"
             style={{ animationDelay: "220ms" }}
           >
-            No credit card. Export {FORMATS.slice(0, 4).join(", ")} and keep the geometry.
+            14-day Studio trial. No credit card. Export the geometry you generate.
           </p>
         </div>
 
@@ -85,7 +84,7 @@ export function Hero() {
             <div key={item.label} className="text-center">
               <dt className="sr-only">{item.label}</dt>
               <dd>
-                <span className="block text-2xl font-bold text-white sm:text-3xl">
+                <span className="block text-xl font-bold text-white sm:text-2xl">
                   {item.value}
                 </span>
                 <span className="mt-1 block text-sm text-muted-foreground">{item.label}</span>

@@ -13,8 +13,8 @@ export function Integrations() {
             Works with the tools you already own
           </Badge>
           <p className="max-w-2xl text-pretty text-sm text-muted-foreground sm:text-base">
-            <span className="font-semibold text-white">Editable exports.</span> Take the model
-            into Revit, Rhino, AutoCAD, and Archicad — no lock-in.
+            <span className="font-semibold text-white">Handoff without a rebuild.</span> Export
+            to Revit, Rhino, AutoCAD, and Archicad — materials and parameters intact.
           </p>
         </div>
 

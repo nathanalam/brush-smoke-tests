@@ -1,35 +1,10 @@
 import * as React from "react"
 import { Menu, X } from "lucide-react"
 
+import { FormaMark } from "@/components/landing/FormaMark"
 import { Button } from "@/components/ui/button"
-import { NAV_LINKS } from "@/data/content"
+import { BRAND, NAV_LINKS } from "@/data/content"
 import { cn } from "@/lib/utils"
-
-function BrushMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={cn("size-6", className)} aria-hidden="true">
-      <defs>
-        <linearGradient id="brush-mark" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#06B6D4" />
-          <stop offset="100%" stopColor="#8B5CF6" />
-        </linearGradient>
-      </defs>
-      {/* A 3x3 lattice of returns — a point cloud reduced to its mark. */}
-      {[4, 12, 20].map((cx) =>
-        [4, 12, 20].map((cy) => (
-          <circle
-            key={`${cx}-${cy}`}
-            cx={cx}
-            cy={cy}
-            r={cx === 12 && cy === 12 ? 3 : 2}
-            fill="url(#brush-mark)"
-            opacity={cx === 12 && cy === 12 ? 1 : 0.55}
-          />
-        )),
-      )}
-    </svg>
-  )
-}
 
 export function Navbar() {
   const [open, setOpen] = React.useState(false)
@@ -42,7 +17,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Close the mobile sheet when the viewport grows past the breakpoint.
   React.useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)")
     const onChange = () => mq.matches && setOpen(false)
@@ -65,10 +39,10 @@ export function Navbar() {
       >
         <a
           href="#top"
-          className="flex items-center gap-2 rounded-md text-lg font-bold tracking-tight text-white"
+          className="flex items-center gap-2 rounded-md text-[15px] font-bold tracking-tight text-white"
         >
-          <BrushMark />
-          Brush
+          <FormaMark />
+          {BRAND.name}
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">
@@ -86,10 +60,10 @@ export function Navbar() {
 
         <div className="hidden items-center gap-2 md:flex">
           <Button variant="ghost" size="sm" asChild>
-            <a href="#">Sign In</a>
+            <a href="#">Log in</a>
           </Button>
           <Button size="sm" asChild>
-            <a href="#download">Get early access</a>
+            <a href="#download">Start free</a>
           </Button>
         </div>
 
@@ -123,12 +97,12 @@ export function Navbar() {
           <div className="mt-3 flex flex-col gap-2">
             <Button variant="outline" asChild>
               <a href="#" onClick={() => setOpen(false)}>
-                Sign In
+                Log in
               </a>
             </Button>
             <Button asChild>
               <a href="#download" onClick={() => setOpen(false)}>
-                Get early access
+                Start free
               </a>
             </Button>
           </div>

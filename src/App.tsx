@@ -1,3 +1,4 @@
+import { Control } from "@/components/landing/Control"
 import { DownloadCTA } from "@/components/landing/DownloadCTA"
 import { FAQ } from "@/components/landing/FAQ"
 import { Footer } from "@/components/landing/Footer"
@@ -5,6 +6,8 @@ import { Hero } from "@/components/landing/Hero"
 import { Integrations } from "@/components/landing/Integrations"
 import { Navbar } from "@/components/landing/Navbar"
 import { Pricing } from "@/components/landing/Pricing"
+import { SocialProof } from "@/components/landing/SocialProof"
+import { Testimonials } from "@/components/landing/Testimonials"
 import { ViewerSpotlight } from "@/components/landing/ViewerSpotlight"
 import { Workflow } from "@/components/landing/Workflow"
 
@@ -21,9 +24,12 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        <Integrations />
+        <SocialProof />
         <Workflow />
         <ViewerSpotlight />
+        <Control />
+        <Integrations />
+        <Testimonials />
         <Pricing />
         <FAQ />
         <DownloadCTA />

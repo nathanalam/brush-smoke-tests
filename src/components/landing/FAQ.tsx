@@ -14,7 +14,7 @@ export function FAQ() {
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="default">FAQ</Badge>
           <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Questions worth answering before you sign up
+            Questions principals ask before they buy
           </h2>
         </div>
 
@@ -30,10 +30,10 @@ export function FAQ() {
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
             Still deciding?{" "}
-            <a href="#" className="font-medium text-laser-cyan underline-offset-4 hover:underline">
-              Join the Discord
-            </a>{" "}
-            and ask the team directly.
+            <a href="#download" className="font-medium text-laser-cyan underline-offset-4 hover:underline">
+              Book a 20-minute studio demo
+            </a>
+            .
           </p>
         </div>
       </div>

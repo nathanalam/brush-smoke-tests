@@ -70,7 +70,7 @@ function ViewerPanel() {
           </div>
           <div className="ml-1 flex flex-1 items-center gap-1.5 truncate rounded-md bg-black/40 px-2.5 py-1 font-mono text-[10px] text-white/45">
             <Building2 className="size-2.5 shrink-0 text-laser-cyan" />
-            <span className="truncate">app.brush.build/project/east-house</span>
+            <span className="truncate">app.forma.architect/project/east-house</span>
           </div>
           <span className="hidden items-center gap-1 rounded border border-laser-cyan/30 bg-laser-cyan/10 px-1.5 py-0.5 font-mono text-[9px] text-laser-cyan sm:flex">
             Live model

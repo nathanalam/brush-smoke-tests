@@ -21,13 +21,13 @@ export function Pricing() {
     <section id="pricing" className="border-t border-white/10 py-20 sm:py-28">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="violet">Simple pricing</Badge>
+          <Badge variant="violet">Pricing</Badge>
           <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Start free. Scale with the studio.
+            Priced like software your studio will actually buy
           </h2>
           <p className="mt-4 text-pretty text-base text-muted-foreground">
-            Tiers are governed by two meters: active projects and AI revisions. Imports and
-            editable exports never count against either.
+            14-day Studio trial on every plan. Imports and editable exports never meter.
+            Pay for projects and revisions — not seats that sit idle.
           </p>
         </div>
 
@@ -65,6 +65,7 @@ export function Pricing() {
               ? (plan.monthly * ANNUAL_MONTHS_CHARGED) / 12
               : plan.monthly
             const billedYearly = plan.monthly * ANNUAL_MONTHS_CHARGED
+            const isCustom = Boolean(plan.custom)
 
             return (
               <div
@@ -98,12 +99,18 @@ export function Pricing() {
                 <div className="mt-6">
                   <div className="flex items-baseline gap-1.5">
                     <span className="text-4xl font-extrabold tracking-tight text-white">
-                      {formatPrice(perMonth)}
+                      {isCustom ? "Custom" : formatPrice(perMonth)}
                     </span>
-                    <span className="text-sm text-muted-foreground">/ month</span>
+                    {!isCustom && (
+                      <span className="text-sm text-muted-foreground">/ month</span>
+                    )}
                   </div>
                   <p className="mt-1.5 h-4 text-xs text-muted-foreground">
-                    {annual ? `${formatPrice(billedYearly)} billed annually` : "Billed monthly"}
+                    {isCustom
+                      ? "Annual firm agreement"
+                      : annual
+                        ? `${formatPrice(billedYearly)} billed annually`
+                        : "Billed monthly"}
                   </p>
                 </div>
 
@@ -153,8 +160,7 @@ export function Pricing() {
         </div>
 
         <p className="mt-8 text-center text-xs text-muted-foreground">
-          Every tier includes sketch and plan import, natural-language revisions, and editable
-          export to IFC, DWG, Revit, and Rhino.
+          Studio includes a 14-day trial. Practice includes SSO, a DPA, and a security review.
         </p>
       </div>
     </section>

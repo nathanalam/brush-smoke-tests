@@ -26,7 +26,7 @@ const STAGES: DemoStage[] = [
     id: "plan",
     label: "Sketch & Plan",
     caption:
-      "Drop a floor plan, a napkin sketch, or a short brief. Brush reads the intent — rooms, circulation, light — not just the pixels.",
+      "Drop a floor plan, a napkin sketch, or a short brief. Forma reads the intent — rooms, circulation, light — not just the pixels.",
     readout: "input://east-house-plan.pdf · sketch + brief",
     image: "/images/plan.jpg",
     alt: "Architect marking up a floor plan on the drawing board",
@@ -76,7 +76,7 @@ export function ViewerSpotlight() {
             Client changes land in the model, not another redraw
           </h2>
           <p className="mt-4 text-pretty text-base text-muted-foreground">
-            Describe the revision in the same language the client used. Brush applies it to live,
+            Describe the revision in the same language the client used. Forma applies it to live,
             editable geometry.
           </p>
         </div>

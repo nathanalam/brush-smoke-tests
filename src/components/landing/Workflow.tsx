@@ -14,12 +14,12 @@ export function Workflow() {
     <section id="features" className="py-20 sm:py-28">
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="violet">Core workflow</Badge>
+          <Badge variant="violet">How it works</Badge>
           <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            From intent to an editable model — in three steps
+            From prompt to proposal
           </h2>
           <p className="mt-4 text-pretty text-base text-muted-foreground">
-            Stop redrawing the plan every time the client changes their mind.
+            One connected model from the first sketch to a file your BIM lead will actually open.
           </p>
         </div>
 

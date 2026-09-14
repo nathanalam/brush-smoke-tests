@@ -1,4 +1,4 @@
-import { ArrowRight, Building2, Play } from "lucide-react"
+import { ArrowRight, Building2, Calendar } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -18,44 +18,35 @@ export function DownloadCTA() {
         <div className="mx-auto max-w-3xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-center backdrop-blur-md sm:p-12">
           <Badge variant="cyan">
             <Building2 className="size-3" />
-            Early access for architects
+            Start with a live project
           </Badge>
 
           <h2 className="mt-6 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Design your next building at the speed you think
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-pretty text-base text-muted-foreground">
-            Join early access. Describe a space, upload a plan, and iterate the model while the
-            client is still in the room.
+            Bring a brief, a sketch, or last week’s client comments. Walk out with an editable
+            model — and a file you can open in Revit tomorrow.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button size="lg" className="w-full sm:w-auto" asChild>
               <a href="#">
-                Request early access
+                Start free for 14 days
                 <ArrowRight className="size-4" />
               </a>
             </Button>
             <Button size="lg" variant="outline" className="w-full sm:w-auto" asChild>
-              <a href="#product">
-                <Play className="size-4" />
-                See a live revision
+              <a href="#">
+                <Calendar className="size-4" />
+                Book a studio demo
               </a>
             </Button>
           </div>
 
-          <div className="mt-8 border-t border-white/10 pt-6">
-            <p className="text-sm text-muted-foreground">
-              Already on the list?{" "}
-              <a
-                href="#pricing"
-                className="inline-flex items-center gap-1 font-medium text-laser-cyan underline-offset-4 hover:underline"
-              >
-                Compare studio plans
-                <ArrowRight className="size-3" />
-              </a>
-            </p>
-          </div>
+          <p className="mt-6 text-xs text-muted-foreground">
+            No credit card. Cancel anytime. Your geometry stays yours.
+          </p>
         </div>
       </div>
     </section>
